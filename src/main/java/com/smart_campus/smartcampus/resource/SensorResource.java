@@ -65,7 +65,7 @@ public class SensorResource {
     
     // JAX-RS calls this method first, then routes further to that class
     @Path("{sensorId}/readings")
-    public SensorReadingResource getReadingResource(@PathParam("sensor Id") String sensorId) {
+    public SensorReadingResource getReadingResource(@PathParam("sensorId") String sensorId) {
         return new SensorReadingResource(sensorId);
     }
 }

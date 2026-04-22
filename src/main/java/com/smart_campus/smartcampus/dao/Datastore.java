@@ -33,10 +33,13 @@ public class Datastore {
         // Sample sensors
         Sensor s1 = new Sensor("TEMP-001", "Temperature", "ACTIVE", 22.5, "LIB-100");
         Sensor s2 = new Sensor("CO2-001", "CO2", "ACTIVE", 400.0, "LAB-101");
+        Sensor s3 = new Sensor("HUM-001", "Humidity", "MAINTENANCE", 60.0, "LAB-101");
+        sensors.put(s3.getId(), s3);
         sensors.put(s1.getId(), s1);
         sensors.put(s2.getId(), s2);
 
         // Link sensors to rooms
+        r2.getSensorIds().add("HUM-001");
         r1.getSensorIds().add("TEMP-001");
         r2.getSensorIds().add("CO2-001");
 
@@ -48,5 +51,8 @@ public class Datastore {
         List<SensorReading> readings2 = new ArrayList<>();
         readings2.add(new SensorReading(400.0));
         sensorReadings.put("CO2-001", readings2);
+        
+        List<SensorReading> readings3 = new ArrayList<>();
+        sensorReadings.put("HUM-001", readings3);
     }
 }
