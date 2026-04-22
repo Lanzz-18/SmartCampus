@@ -9,20 +9,20 @@ package com.smart_campus.smartcampus.exception;
  * @author senal
  */
 
+import com.smart_campus.smartcampus.model.ErrorMessage;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-import java.util.HashMap;
-import java.util.Map;
 
 @Provider
 public class GlobalExceptionMapper implements ExceptionMapper<Throwable> {
     @Override
     public Response toResponse(Throwable e) {
-        Map<String, Object> error = new HashMap<>();
-        error.put("status", 500);
-        error.put("error", "Internal Server Error");
-        error.put("message", "An unexpected error occurred");
+        ErrorMessage error = new ErrorMessage(
+            e.getMessage() != null ? e.getMessage() : "Error occurred",
+            500,
+            "http://localhost:8080/SmartCampus/api/v1/docs"
+        );
         return Response.status(500).entity(error).build();
     }
 }
