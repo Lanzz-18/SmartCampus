@@ -12,6 +12,7 @@ package com.smart_campus.smartcampus.resource;
 import com.smart_campus.smartcampus.dao.Datastore;
 import com.smart_campus.smartcampus.exception.RoomNotEmptyException;
 import com.smart_campus.smartcampus.model.Room;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -21,8 +22,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 @Path("/rooms")
 public class RoomResource {
@@ -38,9 +41,10 @@ public class RoomResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createRoom(Room room){
+    public Response createRoom(Room room, @Context UriInfo uriInfo){
         Datastore.rooms.put(room.getId(), room);
-        return Response.status(201).entity(room).build();
+        URI location = uriInfo.getAbsolutePathBuilder().path(room.getId()).build();
+        return Response.created(location).entity(room).build();
     }
     
     // Returning a single room by ID
@@ -59,7 +63,7 @@ public class RoomResource {
     @DELETE
     @Path("/{roomId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deletResponse(@PathParam("roomId") String roomId) {
+    public Response deleteRoom(@PathParam("roomId") String roomId) {
         Room room = Datastore.rooms.get(roomId);
         if (room == null) {
             return Response.status(404).entity("Room not found").build();
