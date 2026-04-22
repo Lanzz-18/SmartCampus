@@ -45,6 +45,17 @@ public class SensorResource {
         return Response.ok(result).build();
     }
     
+    @GET 
+    @Path("/{sensorId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getSensorById(@PathParam("sensorId") String sensorId) {
+        Sensor sensor = Datastore.sensors.get(sensorId);
+        if (sensor == null) {
+            return Response.status(404).entity("Sensor not found").build();
+        }
+        return Response.ok(sensor).build();
+    }
+    
     // Add the sensor ID to the room's sensorId list
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
