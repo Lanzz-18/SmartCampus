@@ -15,6 +15,7 @@ import com.smart_campus.smartcampus.model.Room;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -42,6 +43,9 @@ public class RoomResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createRoom(Room room, @Context UriInfo uriInfo){
+        if (room.getId() == null || room.getId().isEmpty()) {
+            room.setId(UUID.randomUUID().toString());
+        }
         Datastore.rooms.put(room.getId(), room);
         URI location = uriInfo.getAbsolutePathBuilder().path(room.getId()).build();
         return Response.created(location).entity(room).build();

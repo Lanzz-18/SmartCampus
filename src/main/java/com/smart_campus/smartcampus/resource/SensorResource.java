@@ -14,6 +14,7 @@ import com.smart_campus.smartcampus.exception.LinkedResourceNotFoundException;
 import com.smart_campus.smartcampus.model.Sensor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -66,7 +67,9 @@ public class SensorResource {
                 "Room with ID " + sensor.getRoomId() + " does not exist."
             );
         }
-        
+        if (sensor.getId() == null || sensor.getId().isEmpty()) {
+            sensor.setId(UUID.randomUUID().toString());
+        }
         Datastore.sensors.put(sensor.getId(), sensor);
         Datastore.rooms.get(sensor.getRoomId()).getSensorIds().add(sensor.getId());
         Datastore.sensorReadings.put(sensor.getId(), new ArrayList<>());
