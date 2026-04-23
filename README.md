@@ -30,8 +30,8 @@ git clone https://github.com/Lanzz-18/SmartCampus.git
 ```
 2) Open NetBeans → File → Open Project → navigate to the cloned folder → select it (the folder containing pom.xml)
 3) If you see a double folder like SmartCampus-main/SmartCampus-main, choose the inner one that contains pom.xml
-4) Right-click the project → Clean and Build
-5) Right-click the project → Run
+4) Right-click the project → Clean and Build (Make sure Tomcat is setup properly)
+5) Right-click the project → Run 
 6) Tomcat starts and the API will be available at:
 `http://localhost:8080/SmartCampus/api/v1/`
 
