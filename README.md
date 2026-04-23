@@ -19,6 +19,7 @@ A RESTful API built with JAX-RS (Jersey) for the 5COSC022W Client-Server Archite
 ### Prerequisites
 - Apache NetBeans (with Java Web and EE plugin active)
 - Apache Tomcat 9 (download from https://tomcat.apache.org/download-90.cgi and register in NetBeans under Tools → Servers)
+- When registering Tomcat in NetBeans (Tools → Servers → Add Server -> Apache Tomcat) -> Select Tomcat install folder -> Start a TomCat server
 - JDK 11 or higher
 - Maven (bundled with NetBeans)
 
@@ -27,10 +28,11 @@ A RESTful API built with JAX-RS (Jersey) for the 5COSC022W Client-Server Archite
 ```bash
 git clone https://github.com/Lanzz-18/SmartCampus.git
 ```
-2) Open NetBeans → File → Open Project → select the SmartCampus folder
-3) Right-click the project → Clean and Build
-4) Right-click the project → Run
-5) Tomcat starts and the API will be available at:
+2) Open NetBeans → File → Open Project → navigate to the cloned folder → select it (the folder containing pom.xml, "SmartCampus-main")
+3) If you see a double folder like SmartCampus-main/SmartCampus-main, choose the inner one that contains pom.xml
+4) Right-click the project → Clean and Build
+5) Right-click the project → Run
+6) Tomcat starts and the API will be available at:
 `http://localhost:8080/SmartCampus/api/v1/`
 
 
