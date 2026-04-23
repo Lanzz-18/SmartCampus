@@ -28,7 +28,7 @@ A RESTful API built with JAX-RS (Jersey) for the 5COSC022W Client-Server Archite
 ```bash
 git clone https://github.com/Lanzz-18/SmartCampus.git
 ```
-2) Open NetBeans → File → Open Project → navigate to the cloned folder → select it (the folder containing pom.xml, "SmartCampus-main")
+2) Open NetBeans → File → Open Project → navigate to the cloned folder → select it (the folder containing pom.xml)
 3) If you see a double folder like SmartCampus-main/SmartCampus-main, choose the inner one that contains pom.xml
 4) Right-click the project → Clean and Build
 5) Right-click the project → Run
